@@ -31,3 +31,34 @@ Welcome to the official website for **La Bodega Café**, a local coffee shop roo
 
 ## 📁 Folder Structure Overview
 
+/public
+└── LaBodegaIcon.png (Favicon)
+└── index.html
+/src
+├── assets/ # All images and video files
+├── components/ # Navbar, Menu, Contact, IceCream, etc.
+└── App.js # Main page structure
+
+---
+
+## ⚙️ Deployment
+
+This site is deployed via **Netlify**, and the custom domain is registered through **Namecheap**. All updates are made by pushing code through Git, triggering Netlify’s build system.
+
+---
+
+## 📬 Contact
+
+Have questions or want a website like this for your own business?
+
+**Developer:** [Your Full Name]  
+**Email:** your.email@example.com  
+**Portfolio:** [your-portfolio-link.com] *(optional)*  
+**Instagram (optional):** @yourhandle
+
+---
+
+## ©️ Copyright
+
+© 2025 La Bodega Café. Website built by [Your Name]. All rights reserved.
+
