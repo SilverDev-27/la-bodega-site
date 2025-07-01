@@ -1,5 +1,5 @@
 import React from 'react';
-import slide1 from './assets/slide1.jpg';
+import aboutImg from './assets/about.jpg';
 import strawberryRefresher from './assets/strawberry-refresher.jpg';
 
 const About = () => {
@@ -28,7 +28,7 @@ const About = () => {
         data-aos="fade-up"
         >
           <img
-            src={slide1}
+            src={aboutImg}
             alt="Cafe"
             className="w-full h-80 object-cover rounded-lg shadow-md"
           />
