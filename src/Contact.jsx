@@ -12,7 +12,7 @@ const Contact = () => {
           Contact Us
         </h2>
         <p className="text-lg sm:text-xl text-gray-800 mb-10">
-          Ask Us To Rent Our Space or Send Us Any Questions Below!
+          Ask Us About Renting Our Space or Send Us Any Questions Below!
         </p>
 
         <form
