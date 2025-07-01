@@ -1,108 +1,43 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# La Bodega
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+La Bodega is a simple, stylish website designed to showcase a local bodega or small business online. It includes a responsive design, easy-to-navigate layout, and modern web aesthetics using HTML, CSS, and JavaScript.
 
-## Available Scripts
+## 🚀 Live Demo
 
-In the project directory, you can run:
+Visit the live website here: [https://labodegacafeofficial.com](#)
 
-### `npm start`
+*(Update this link after you deploy to Netlify)*
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📁 Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+la-bodega-site/
+├── index.html
+├── style.css
+├── script.js
+├── images/
+└── README.md
 
-### `npm test`
+## 🔧 Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- HTML5
+- CSS3
+- JavaScript
+- VS Code
+- Git & GitHub
 
-### `npm run build`
+## 📦 Deployment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project is deployed on [Netlify](https://netlify.com), a free platform for hosting static websites.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🧠 Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Fully responsive layout
+- Clean and modern design
+- Mobile-friendly navigation
+- Simple animations (if included)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🙌 Author
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# La Bodega Café ☕️
-
-Welcome to the official website for **La Bodega Café**, a local coffee shop rooted in Latin flavor and community vibes. This site was custom-built using **React** and **Tailwind CSS**, and designed with performance, accessibility, and mobile responsiveness in mind.
-
-[Visit the live site here](https://labodegacafeofficial.com) 🌐
-
----
-
-## 📸 Features
-
-- **Smooth Scroll Navigation**
-- **Responsive Slideshow**
-- **Interactive Menu** (with click-to-toggle images and descriptions)
-- **Promotional Banner**
-- **Contact Form Integration**
-- **Ice Cream Highlight Section**
-- **Custom Gradient Aesthetic**
-- **Mobile-Friendly Hamburger Menu**
-
----
-
-## 🛠 Built With
-
-- **React** – Modern JavaScript framework
-- **Tailwind CSS** – Utility-first styling
-- **AOS (Animate On Scroll)** – Scroll-based animations
-- **Formspree** – For contact form submissions
-- **Netlify** – Deployment & hosting
-
----
-
-## ©️ Copyright
-
-© 2025 La Bodega Café. Website built by [Your Name]. All rights reserved.
-
->>>>>>> 1a15b30615aa9cb602c1b2cce90a01ceb9d7c528
+**Silver Aguayo**  
+GitHub: [@SilverDev-27](https://github.com/SilverDev-27)
