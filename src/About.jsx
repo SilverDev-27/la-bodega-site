@@ -24,8 +24,9 @@ const About = () => {
           Come through. Stay a while. Let’s build our community one cup at a time.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          data-aos="fade-up"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        data-aos="fade-up"
+        >
           <img
             src={slide1}
             alt="Cafe"
