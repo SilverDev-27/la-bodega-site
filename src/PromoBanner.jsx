@@ -28,7 +28,8 @@ const PromotionBanner = () => {
               Tuesdays: BOGO ½ Off
             </h3>
             <p className="text-sm sm:text-base md:text-lg text-gray-700">
-              Buy one drink, get the second 50% off *Does Not Include Specialty Drinks*
+              Buy one drink, get the second 50% off 
+              *Does Not Include Specialty Drinks*
             </p>
           </div>
 
