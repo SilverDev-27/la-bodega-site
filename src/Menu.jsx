@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import duvalinImg from './assets/slide1.jpg'; // Replace with actual Duvalin image
 import matchaImg from './assets/matcha.jpg';
 import strawberryImg from './assets/strawberry-refresher.jpg';
@@ -22,9 +22,17 @@ import icedCaramelButterscotchImg from './assets/caramel-butterscotch.jpg';
 const MenuItem = ({ name, price, image, description }) => {
   const [showImage, setShowImage] = useState(false);
   const [enlarged, setEnlarged] = useState(false);
+  const overlayRef = useRef(null);
 
   const handleImageClick = () => setEnlarged(true);
   const closeOverlay = () => setEnlarged(false);
+
+    // Auto-scroll to the image when enlarged
+  useEffect(() => {
+    if (enlarged && overlayRef.current) {
+      overlayRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [enlarged]);
 
   return (
     <>
@@ -68,6 +76,7 @@ const MenuItem = ({ name, price, image, description }) => {
           onClick={closeOverlay}
         >
           <img
+          ref={overlayRef}
             src={image}
             alt={`${name} enlarged`}
             className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white"
