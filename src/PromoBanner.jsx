@@ -15,11 +15,11 @@ const PromotionBanner = () => {
     >
       <div className="max-w-6xl mx-auto text-center" data-aos="fade-up">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-          Weekly Promotions
+          Sip, Savor, & Save - 2 to 5PM
         </h2>
 
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6">
-          Join us every Tuesday and Thursday from 2PM – 5PM
+        <p className="text-base sm:text-xl md:text-2xl lg:text-3xl mb-6">
+          Join us every Tuesday and Thursday
         </p>
 
         <div className="bg-white bg-opacity-70 text-black rounded-lg p-4 sm:p-6 max-w-4xl mx-auto space-y-4 shadow-md">
