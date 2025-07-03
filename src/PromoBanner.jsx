@@ -14,7 +14,7 @@ const PromotionBanner = () => {
       }}
     >
       <div className="max-w-6xl mx-auto text-center" data-aos="fade-up">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
           Sip, Savor, & Save - 2 to 5PM
         </h2>
 
