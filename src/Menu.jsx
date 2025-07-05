@@ -24,6 +24,7 @@ const MenuItem = ({ name, price, image, video, description, isNew }) => {
   const [showMedia, setShowMedia] = useState(false);
   const [enlarged, setEnlarged] = useState(false);
   const overlayRef = useRef(null);
+  const previewRef = useRef(null);
 
   const handleClick = () => setShowMedia(!showMedia);
   const handleMediaClick = () => setEnlarged(true);
@@ -34,6 +35,25 @@ const MenuItem = ({ name, price, image, video, description, isNew }) => {
       overlayRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [enlarged]);
+
+  // Auto-hide media preview if scrolled out of view
+  useEffect(() => {
+    if (!showMedia) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setShowMedia(false);
+      },
+      { threshold: 0.1 }
+    );
+
+    const node = previewRef.current;
+if (node) observer.observe(node);
+
+return () => {
+  if (node) observer.unobserve(node);
+};
+  }, [showMedia]);
 
   return (
     <>
@@ -56,21 +76,27 @@ const MenuItem = ({ name, price, image, video, description, isNew }) => {
               {showMedia && (image || video) ? (
                 image ? (
                   <img
+                    ref={previewRef}
                     src={image}
                     alt={name}
                     onClick={handleMediaClick}
                     className="w-44 h-auto object-cover rounded shadow ml-auto mr-5 hover:scale-105 transition-transform"
                   />
                 ) : (
-                  <video
-                    src={video}
-                    onClick={handleMediaClick}
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    className="w-44 h-auto object-contain rounded shadow"
-                  />
+                  <div
+                    ref={previewRef}
+                    className="w-44 h-auto ml-auto mr-5 rounded shadow overflow-hidden hover:scale-105 transition-transform"
+                  >
+                    <video
+                      src={video}
+                      onClick={handleMediaClick}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-contain rounded"
+                    />
+                  </div>
                 )
               ) : (
                 <span className="text-right whitespace-nowrap">{price}</span>
@@ -107,9 +133,9 @@ const MenuItem = ({ name, price, image, video, description, isNew }) => {
               ref={overlayRef}
               src={video}
               autoPlay
-              loop
               muted
-              controls
+              loop
+              playsInline
               className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white"
             />
           )}
