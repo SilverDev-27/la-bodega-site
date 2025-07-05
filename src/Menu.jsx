@@ -11,6 +11,8 @@ import icedMazapanImg from './assets/mazapan.jpg';
 import icedSignatureImg from './assets/iced-signature-latte.jpg';
 import icedHorchataImg from './assets/iced-horchata.jpg';
 // Monthly Drinks
+import icedBlueberryMuffinVid from './assets/iced-blueberry-muffin.mp4';
+import icedBlueberryMatchaVid from './assets/iced-blueberry-matcha.mp4';
 import icedHoneyLavenderImg from './assets/iced-honey-lavender.jpg';
 import icedWhiteChocolateImg from './assets/iced-white-chocolate-dirty-chai.jpg';
 import icedFruityPebblesImg from './assets/fruitypebbles.jpg';
@@ -18,16 +20,15 @@ import icedStrawberriesNdCreamImg from './assets/strawberries-cream.jpg';
 import icedBananaCreamMatchaImg from './assets/banana-cream-matcha.jpg';
 import icedCaramelButterscotchImg from './assets/caramel-butterscotch.jpg';
 
-
-const MenuItem = ({ name, price, image, description }) => {
-  const [showImage, setShowImage] = useState(false);
+const MenuItem = ({ name, price, image, video, description, isNew }) => {
+  const [showMedia, setShowMedia] = useState(false);
   const [enlarged, setEnlarged] = useState(false);
   const overlayRef = useRef(null);
 
-  const handleImageClick = () => setEnlarged(true);
+  const handleClick = () => setShowMedia(!showMedia);
+  const handleMediaClick = () => setEnlarged(true);
   const closeOverlay = () => setEnlarged(false);
 
-    // Auto-scroll to the image when enlarged
   useEffect(() => {
     if (enlarged && overlayRef.current) {
       overlayRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -38,32 +39,51 @@ const MenuItem = ({ name, price, image, description }) => {
     <>
       <div
         className="w-full transition-all duration-300 cursor-pointer"
-        onClick={() => setShowImage(!showImage)}
+        onClick={handleClick}
       >
-        {/* Make border outside to ensure full width */}
         <div className="border-b border-gray-300 w-full">
           <div className="w-full max-w-lg mx-auto flex flex-col gap-1 py-2">
             <div className="flex justify-between items-center gap-4">
-              <span className="flex-1 font-medium text-lg">{name}</span>
-              {image && showImage ? (
-                <img
-                  src={image}
-                  alt={name}
-                  onClick={handleImageClick}
-                  className="w-44 h-44 object-cover rounded shadow ml-auto mr-5 hover:scale-105 transition-transform"
-                />
+              <span className="flex-1 font-medium text-lg relative">
+                {name}
+                {isNew && (
+                  <span className="ml-2 px-2 py-0.5 text-xs bg-red-500 text-white rounded-full">
+                    NEW
+                  </span>
+                )}
+              </span>
+
+              {showMedia && (image || video) ? (
+                image ? (
+                  <img
+                    src={image}
+                    alt={name}
+                    onClick={handleMediaClick}
+                    className="w-44 h-auto object-cover rounded shadow ml-auto mr-5 hover:scale-105 transition-transform"
+                  />
+                ) : (
+                  <video
+                    src={video}
+                    onClick={handleMediaClick}
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    className="w-44 h-auto object-contain rounded shadow"
+                  />
+                )
               ) : (
                 <span className="text-right whitespace-nowrap">{price}</span>
               )}
             </div>
 
-            {image && !showImage && (
+            {(image || video) && !showMedia && (
               <span className="text-sm text-gray-500 italic text-right pr-5">
-                Click to view image
+                Click to view {image ? 'image' : 'video'}
               </span>
             )}
 
-            {!image && description && (
+            {!image && !video && description && (
               <p className="text-sm italic text-gray-500 text-right">{description}</p>
             )}
           </div>
@@ -75,12 +95,24 @@ const MenuItem = ({ name, price, image, description }) => {
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
           onClick={closeOverlay}
         >
-          <img
-          ref={overlayRef}
-            src={image}
-            alt={`${name} enlarged`}
-            className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white"
-          />
+          {image ? (
+            <img
+              ref={overlayRef}
+              src={image}
+              alt={`${name} enlarged`}
+              className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white"
+            />
+          ) : (
+            <video
+              ref={overlayRef}
+              src={video}
+              autoPlay
+              loop
+              muted
+              controls
+              className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white"
+            />
+          )}
         </div>
       )}
     </>
@@ -186,6 +218,8 @@ const CoffeeDivider = () => {
 
 // Menu Data
 const monthlySpecials = [
+  { name: 'Iced Blueberry Muffin Latte' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMuffinVid, isNew: true },
+  { name: 'Iced Blueberry Matcha' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMatchaVid, isNew: true },
   { name: 'Iced Honey Lavender Matcha' , price: '$5.50 / $6.60 / $7.50', image: icedHoneyLavenderImg },
   { name: 'Hot Honey Lavender Matcha', price: '5.50 / 6.60 / 7.50', description: 'Honey Infused Matcha with Lavender Syrup' },
   { name: 'Iced Banana Cream Matcha' , price: '$6.50 / $7.50 / $8.50', image: icedBananaCreamMatchaImg },
