@@ -277,7 +277,7 @@ const CoffeeDivider = () => {
 const monthlySpecials = [
   { name: 'Iced Strawberry Matcha', price: '7.50 / 8.50 / 9.75', image: icedStrawberryMatchaImg, isNew: true },
   { name: 'Iced Mango Matcha', price: '7.50 / 8.50 / 9.75', image: icedMangoMatchaImg, isNew: true },
-  { name: 'Iced Blue Raspberry', price: '7.50 / 8.50 / 9.75', image: icedBlueRaspberryImg, isNew: true },
+  { name: 'Iced Blue Raspberry Latte', price: '7.50 / 8.50 / 9.75', image: icedBlueRaspberryImg, isNew: true },
   { name: 'Iced Blueberry Muffin Latte' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMuffinVid, },
   { name: 'Iced Blueberry Matcha' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMatchaVid, },
   { name: 'Iced Honey Lavender Matcha' , price: '$6.80 / $8.00 / $9.50', image: icedHoneyLavenderImg },
