@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -9,22 +9,33 @@ import IceCream from './IceCream';
 import Contact from './Contact';
 import PromoBanner from './PromoBanner';
 
+import openingSlide from './assets/slide4.mp4';
 import slide1 from './assets/strawberry-refresher.jpg'; // Updated first slide
 import slide2 from './assets/slide1.jpg'; // Duvalin or fallback image
 import slide3 from './assets/slide2.jpg'; // Matcha w strawberry coldfoam
 
-const slides = [slide1, slide2, slide3];
+const slides = [openingSlide, slide1, slide2, slide3];
 
 const App = () => {
   const [current, setCurrent] = useState(0);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
+
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 6000);
+
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (current === 0 && videoRef.current) {
+      videoRef.current.currentTime = 0; // ✅ Reset to start
+      // No need to call play()
+    }
+  }, [current]);
 
   return (
     <div className="bg-gradient-to-b from-[#d2b48c] via-[#f7f3e9] to-white text-black">
@@ -40,7 +51,23 @@ const App = () => {
             className="relative w-full aspect-[9/9] max-w-5xl mx-auto overflow-hidden rounded-lg shadow-md bg-white"
             data-aos="fade-up"
           >
-            {slides.map((src, index) => (
+            {slides.map((src, index) => {
+            const isVideo = typeof src === 'string' && src.endsWith('.mp4');
+
+            return isVideo ? (
+              <video
+                key={index}
+                ref={videoRef}
+                src={src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                  index === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
+              />
+            ) : (
               <img
                 key={index}
                 src={src}
@@ -49,7 +76,8 @@ const App = () => {
                   index === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
               />
-            ))}
+            );
+          })}
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold my-6" data-aos="fade-up">

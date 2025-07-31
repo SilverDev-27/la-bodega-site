@@ -13,22 +13,51 @@ import icedHorchataImg from './assets/iced-horchata.jpg';
 // Monthly Drinks
 import icedBlueberryMuffinVid from './assets/iced-blueberry-muffin.mp4';
 import icedBlueberryMatchaVid from './assets/iced-blueberry-matcha.mp4';
+import icedBlueRaspberryImg from './assets/iced-blue-raspberry.jpg';
+import icedMangoMatchaImg from './assets/iced-mango-matcha.jpg';
+import icedStrawberryMatchaImg from './assets/iced-strawberry-matcha.jpg';
 import icedHoneyLavenderImg from './assets/iced-honey-lavender.jpg';
 import icedWhiteChocolateImg from './assets/iced-white-chocolate-dirty-chai.jpg';
 import icedFruityPebblesImg from './assets/fruitypebbles.jpg';
 import icedStrawberriesNdCreamImg from './assets/strawberries-cream.jpg';
 import icedBananaCreamMatchaImg from './assets/banana-cream-matcha.jpg';
 import icedCaramelButterscotchImg from './assets/caramel-butterscotch.jpg';
+// Food Items
+import sausageEggSandwichImg from './assets/sausage-egg-sandwich.jpg';
+import baconEggSandwichImg from './assets/bacon-egg-sandwich.jpg';
+import bagelImg from './assets/bagel.jpg';
+import breakfastBurritoImg from './assets/breakfast-burrito.jpeg';
+import bodegaBreakfastBurrito from './assets/bodega-burrito.jpeg';
+import bodegaBreakfastTortaImg from './assets/bodega-torta.jpg';
+import compaPolloImg from './assets/compa-pollo.jpg';
+import enchiladasImg from './assets/enchiladas.jpg';
+import tacosDurosImg from './assets/tacos-duros.jpg';
+import beefBurritoImg from './assets/beef-burrito.jpeg';
+import beefTortaImg from './assets/beef-torta.jpeg';
+import tacosImg from './assets/tacos.jpeg';
+import quesadillasImg from './assets/quesadillas.jpeg';
+import heavyHitterImg from './assets/heavy-hitter.jpeg';
 
 const MenuItem = ({ name, price, image, video, description, isNew }) => {
   const [showMedia, setShowMedia] = useState(false);
   const [enlarged, setEnlarged] = useState(false);
+  const [closing, setClosing] = useState(false);
   const overlayRef = useRef(null);
   const previewRef = useRef(null);
 
   const handleClick = () => setShowMedia(!showMedia);
-  const handleMediaClick = () => setEnlarged(true);
-  const closeOverlay = () => setEnlarged(false);
+
+  const handleMediaClick = () => {
+    if (enlarged) {
+      setClosing(true);
+      setTimeout(() => {
+        setEnlarged(false);
+        setClosing(false);
+      }, 250); // Match animation duration
+    } else {
+      setEnlarged(true);
+    }
+  };
 
   useEffect(() => {
     if (enlarged && overlayRef.current) {
@@ -36,7 +65,7 @@ const MenuItem = ({ name, price, image, video, description, isNew }) => {
     }
   }, [enlarged]);
 
-  // Auto-hide media preview if scrolled out of view
+  // Auto-hide preview if scrolled away
   useEffect(() => {
     if (!showMedia) return;
 
@@ -48,11 +77,11 @@ const MenuItem = ({ name, price, image, video, description, isNew }) => {
     );
 
     const node = previewRef.current;
-if (node) observer.observe(node);
+    if (node) observer.observe(node);
 
-return () => {
-  if (node) observer.unobserve(node);
-};
+    return () => {
+      if (node) observer.unobserve(node);
+    };
   }, [showMedia]);
 
   return (
@@ -118,15 +147,17 @@ return () => {
 
       {enlarged && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={closeOverlay}
+          className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-all duration-300 ${
+            closing ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+          }`}
+          onClick={handleMediaClick}
         >
           {image ? (
             <img
               ref={overlayRef}
               src={image}
               alt={`${name} enlarged`}
-              className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white"
+              className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white transition-transform duration-300"
             />
           ) : (
             <video
@@ -136,7 +167,7 @@ return () => {
               muted
               loop
               playsInline
-              className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white"
+              className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white transition-transform duration-300"
             />
           )}
         </div>
@@ -159,7 +190,7 @@ const renderSection = (id, title, items, sizeLabel = null, showDisclaimer = fals
       </h2>
       {title === 'Monthly Specials' && (
         <p className="text-xl sm:text-2xl lg:text-3xl text-center text-yellow-700 italic mb-6">
-          Only for the month of <span className="underline">July</span> Try them while you can!
+          Only for the month of <span className="underline">August</span> Try them while you can!
         </p>
       )}
 
@@ -244,11 +275,13 @@ const CoffeeDivider = () => {
 
 // Menu Data
 const monthlySpecials = [
-  { name: 'Iced Blueberry Muffin Latte' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMuffinVid, isNew: true },
-  { name: 'Iced Blueberry Matcha' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMatchaVid, isNew: true },
-  { name: 'Iced Honey Lavender Matcha' , price: '$5.50 / $6.60 / $7.50', image: icedHoneyLavenderImg },
-  { name: 'Hot Honey Lavender Matcha', price: '5.50 / 6.60 / 7.50', description: 'Honey Infused Matcha with Lavender Syrup' },
-  { name: 'Iced Banana Cream Matcha' , price: '$6.50 / $7.50 / $8.50', image: icedBananaCreamMatchaImg },
+  { name: 'Iced Strawberry Matcha', price: '7.50 / 8.50 / 9.75', image: icedStrawberryMatchaImg, isNew: true },
+  { name: 'Iced Mango Matcha', price: '7.50 / 8.50 / 9.75', image: icedMangoMatchaImg, isNew: true },
+  { name: 'Iced Blue Raspberry', price: '7.50 / 8.50 / 9.75', image: icedBlueRaspberryImg, isNew: true },
+  { name: 'Iced Blueberry Muffin Latte' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMuffinVid, },
+  { name: 'Iced Blueberry Matcha' , price: '$7.50 / 8.50 / 9.75', video: icedBlueberryMatchaVid, },
+  { name: 'Iced Honey Lavender Matcha' , price: '$6.80 / $8.00 / $9.50', image: icedHoneyLavenderImg },
+  { name: 'Iced Banana Cream Matcha' , price: '$6.80 / $8.00 / $9.50', image: icedBananaCreamMatchaImg },
   { name: 'Iced Fruity Pebbles Latte' , price: '$7.00 / $7.90 / $8.90', image: icedFruityPebblesImg },
   { name: 'Strawberries & Cream Latte' , price: '$6.25 / $7.25 / $8.25', image: icedStrawberriesNdCreamImg },
   { name: 'Iced Caramel Butterscotch Latte' , price: '$6.20 / $7.20 / $8.20', image:icedCaramelButterscotchImg },
@@ -256,14 +289,14 @@ const monthlySpecials = [
 ];
 
 const breakfastItems = [
-  { name: 'Sausage, Egg, Cheese Sandwich', price: '$7.85' },
-  { name: 'Bacon, Egg, Cheese Sandwich', price: '$7.85' },
+  { name: 'Sausage, Egg, Cheese Sandwich', price: '$7.85', image: sausageEggSandwichImg },
+  { name: 'Bacon, Egg, Cheese Sandwich', price: '$7.85', image: baconEggSandwichImg },
   { name: 'Avocado Toast', price: '$6.00' },
   { name: 'Avocado Toast w/ Egg', price: '$7.00'},
-  { name: 'Bagel', price: '$4.65' },
-  { name: 'Breakfast Burrito', price: '$6.80' },
-  { name: 'Bodega Breakfast Torta', price: '$8.50' },
-  { name: 'Bodega Breakfast Burrito', price: '$7.00' },
+  { name: 'Bagel', price: '$4.65', image: bagelImg },
+  { name: 'Breakfast Burrito', price: '$6.80', image: breakfastBurritoImg },
+  { name: 'Bodega Breakfast Torta', price: '$8.50', image: bodegaBreakfastTortaImg },
+  { name: 'Bodega Breakfast Burrito', price: '$7.00', image: bodegaBreakfastBurrito },
 ];
 
 const hotCoffeeItems = [
@@ -292,19 +325,19 @@ const coldCoffeeItems = [
 ];
 
 const lunchItems = [
-  { name: 'Beef Burrito', price: '$8.75' },
-  { name: 'Beef Torta', price: '$9.26' },
-  { name: 'Tacos', price: '$3.60' },
-  { name: 'Tacos Duros', price: '$8.03' },
-  { name: 'Enchiladas', price: '$10.81' },
-  { name: 'Quesadillas', price: '$8.75' },
+  { name: 'Beef Burrito', price: '$8.75', image: beefBurritoImg },
+  { name: 'Beef Torta', price: '$9.26', image: beefTortaImg },
+  { name: 'Tacos', price: '$3.60', image: tacosImg },
+  { name: 'Tacos Duros', price: '$8.03', image: tacosDurosImg },
+  { name: 'Enchiladas', price: '$10.81', image: enchiladasImg },
+  { name: 'Quesadillas', price: '$8.75', image: quesadillasImg },
   { name: 'Tostadas', price: '$3.35' },
   { name: 'Torta de Jamon', price: '$9.26' },
 ];
 
 const sandwichItems = [
-  { name: 'Heavy Hitter', price: '$11.00' },
-  { name: 'Compa Pollo', price: '$11.00' },
+  { name: 'Heavy Hitter', price: '$11.00', image: heavyHitterImg },
+  { name: 'Compa Pollo', price: '$11.00', image: compaPolloImg },
   { name: 'Ham Sandwich', price: '$10.00' },
   { name: 'Turkey Sandwich', price: '$10.00' },
 ];
@@ -322,11 +355,7 @@ const specialtyItems = [
 ];
 
 const dessertItems = [
-  { name: 'Cheesecake', price: '$3.50' },
-  { name: 'Churro Cheesecake', price: '$3.50' },
-  { name: 'Dubai Cheesecake', price: '$6.00' },
-  { name: 'Conchas', price: '$2.50' },
-  { name: 'Cookies (3)', price: '$3.25' },
+  { name: 'Cookies (3)', price: '$4.50' },
   { name: 'Chocolate Croissants', price: '$4.12' },
 ];
 
