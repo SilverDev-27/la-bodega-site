@@ -31,9 +31,17 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (current === 0 && videoRef.current) {
-      videoRef.current.currentTime = 0; // ✅ Reset to start
-      // No need to call play()
+    const video = videoRef.current;
+
+    if (current === 0 && video) {
+      video.currentTime = 0;
+      const playPromise = video.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn('Mobile autoplay might be blocked:', err);
+        });
+      }
     }
   }, [current]);
 
