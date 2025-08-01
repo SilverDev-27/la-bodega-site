@@ -22,6 +22,7 @@ import icedFruityPebblesImg from './assets/fruitypebbles.jpg';
 import icedStrawberriesNdCreamImg from './assets/strawberries-cream.jpg';
 import icedBananaCreamMatchaImg from './assets/banana-cream-matcha.jpg';
 import icedCaramelButterscotchImg from './assets/caramel-butterscotch.jpg';
+import icedAlmondJoyImg from './assets/iced-almond-joy.jpg';
 // Food Items
 import sausageEggSandwichImg from './assets/sausage-egg-sandwich.jpg';
 import baconEggSandwichImg from './assets/bacon-egg-sandwich.jpg';
@@ -275,6 +276,7 @@ const CoffeeDivider = () => {
 
 // Menu Data
 const monthlySpecials = [
+  { name: 'Iced Almond Joy Latte', price: '7.50 / 8.50 / 9.75', image: icedAlmondJoyImg, isNew: true },
   { name: 'Iced Strawberry Matcha', price: '7.50 / 8.50 / 9.75', image: icedStrawberryMatchaImg, isNew: true },
   { name: 'Iced Mango Matcha', price: '7.50 / 8.50 / 9.75', image: icedMangoMatchaImg, isNew: true },
   { name: 'Iced Blue Raspberry Latte', price: '7.50 / 8.50 / 9.75', image: icedBlueRaspberryImg, isNew: true },
